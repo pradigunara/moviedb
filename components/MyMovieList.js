@@ -2,7 +2,7 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 import { useState } from 'react'
 import { imageURL } from 'utils'
 import { Button } from 'antd'
-import EaseAnimate from './EaseAnimate'
+import ZoomAnimate from './ZoomAnimate'
 
 export default function MyMovieList({ myList }) {
   const handleClick = (movie) => {
@@ -15,7 +15,7 @@ export default function MyMovieList({ myList }) {
     <>
       <h2>My List</h2>
       <ScrollContainer
-        style={{ height: listItems.length ? '220px' : '50px', marginBottom: '2em' }}
+        style={{ height: '220px', marginBottom: '2em' }}
         vertical={false}
         hideScrollbars={false}
       >
@@ -29,13 +29,13 @@ export default function MyMovieList({ myList }) {
           {listItems.length === 0
             ? 'Nothing here! Scroll to discover more'
             : listItems.map((movie) => (
-              <EaseAnimate key={movie?.id}>
+              <ZoomAnimate key={movie?.id}>
                 <MyListImage
                   key={movie?.id}
                   movie={movie}
                   onDelete={handleClick}
                 />
-              </EaseAnimate>
+              </ZoomAnimate>
               ))}
         </div>
       </ScrollContainer>
