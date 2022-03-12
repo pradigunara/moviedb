@@ -1,18 +1,19 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "styles/Home.module.css";
-import PageHeader from "components/PageHeader";
-import Container from "components/Container";
-import { useGenreList } from "hooks/genre";
-import { useMovieList } from "../hooks/movie";
+import Head from 'next/head'
+import PageHeader from 'components/PageHeader'
+import Container from 'components/Container'
+import { useGenreList } from 'hooks/genre'
+import { useMovieList } from '../hooks/movie'
 import MoviesGenre from '../components/MoviesGenre'
+import MyMovieList from '../components/MyMovieList'
+import useMyList from '../hooks/mylist'
 
 export default function Home() {
-  const genreList = useGenreList();
-  const movieList = useMovieList({ genreId: 18 });
+  const genreList = useGenreList()
+  const movieList = useMovieList({ genreId: 18 })
+  const myList = useMyList()
 
-  console.log('genreList', genreList.data);
-  console.log('movieList', movieList.data);
+  console.log('genreList', genreList.data)
+  console.log('movieList', movieList.data)
 
   return (
     <div>
@@ -24,10 +25,17 @@ export default function Home() {
 
       <PageHeader />
       <Container>
-        { genreList?.data?.map(genre => (
-          <MoviesGenre key={genre?.id} genreName={genre?.name} genreId={genre?.id}/>
+        <MyMovieList myList={myList} />
+
+        {genreList?.data?.map((genre) => (
+          <MoviesGenre
+            key={genre?.id}
+            genreName={genre?.name}
+            genreId={genre?.id}
+            myList={myList}
+          />
         ))}
       </Container>
     </div>
-  );
+  )
 }
