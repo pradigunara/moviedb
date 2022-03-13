@@ -1,14 +1,16 @@
 import _ from 'lodash'
 import { useRequest } from 'ahooks'
 import axios from 'axios'
-import { API_KEY, BASE_API_URL } from 'constants'
 
 export function useGenreList() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY
+
   const { data, error, loading } = useRequest(() =>
     axios
-      .get(`${BASE_API_URL}/genre/movie/list`, {
+      .get(`${baseUrl}/genre/movie/list`, {
         params: {
-          api_key: API_KEY,
+          api_key: apiKey,
           language: 'en-US',
         },
       })

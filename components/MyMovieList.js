@@ -25,17 +25,18 @@ export default function MyMovieList({ myList }) {
             flexDirection: 'row',
             columnGap: '1em',
           }}
+          data-testid="mylist-container"
         >
           {listItems.length === 0
             ? 'Nothing here! Scroll to discover more'
             : listItems.map((movie) => (
-              <ZoomAnimate key={movie?.id}>
-                <MyListImage
-                  key={movie?.id}
-                  movie={movie}
-                  onDelete={handleClick}
-                />
-              </ZoomAnimate>
+                <ZoomAnimate key={movie?.id}>
+                  <MyListImage
+                    key={movie?.id}
+                    movie={movie}
+                    onDelete={handleClick}
+                  />
+                </ZoomAnimate>
               ))}
         </div>
       </ScrollContainer>
@@ -59,7 +60,12 @@ function MyListImage({ movie, onDelete }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <img key={movie?.id} height="200" src={imageURL(movie?.poster_path)} />
+      <img
+        key={movie?.id}
+        height="200"
+        src={imageURL(movie?.poster_path)}
+        alt={movie?.title}
+      />
       {hovered && (
         <Button
           style={{ marginTop: '-80%', marginLeft: '1em', marginRight: '1em' }}

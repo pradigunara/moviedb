@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@testing-library/jest-dom": "^5.16.2",
     "ahooks": "^3.1.13",
     "antd": "^4.19.1",
     "axios": "^0.26.1",
+    "jest": "^27.5.1",
     "lodash": "^4.17.21",
+    "msw": "^0.39.1",
     "next": "12.1.0",
     "rc-tween-one": "^3.0.3",
     "react": "17.0.2",
@@ -21,6 +24,9 @@
     "react-indiana-drag-scroll": "^2.1.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.11.3",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "prettier": "^2.5.1"

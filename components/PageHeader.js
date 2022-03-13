@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import style from 'styles/Header.module.css'
 import { useMovieList } from 'hooks/movie'
 import { imageURL } from 'utils'
-import { Carousel } from 'antd'
 import SlideAnimate from './SlideAnimate'
 
 export default function PageHeader() {

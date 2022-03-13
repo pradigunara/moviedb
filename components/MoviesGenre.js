@@ -1,3 +1,4 @@
+import React from 'react'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { useMovieList } from 'hooks/movie'
 import { imageURL } from 'utils'
@@ -20,9 +21,10 @@ export default function MoviesGenre({ genreName, genreId, myList }) {
       >
         <div
           style={{ display: 'flex', flexDirection: 'row', columnGap: '1em' }}
+          data-testid="movies-genre-container"
         >
           {movieList?.data?.results?.map((movie) => (
-            <>
+            <React.Fragment key={movie?.id}>
               {myList.has(movie?.id) && (
                 <StarFilled
                   style={{
@@ -38,8 +40,9 @@ export default function MoviesGenre({ genreName, genreId, myList }) {
                 src={imageURL(movie?.poster_path)}
                 style={{ cursor: 'pointer' }}
                 onClick={handleClick(movie)}
+                alt={movie?.title}
               />
-            </>
+            </React.Fragment>
           ))}
         </div>
       </ScrollContainer>
