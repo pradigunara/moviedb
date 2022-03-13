@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import ScrollContainer from 'react-indiana-drag-scroll'
-import { useMovieList } from 'hooks/movie'
+import { useScrollLoadMovieList } from 'hooks/movie'
 import { imageURL } from 'utils'
 import { StarFilled } from '@ant-design/icons'
 
 export default function MoviesGenre({ genreName, genreId, myList }) {
-  const movieList = useMovieList({ genreId })
+  const containerRef = useRef()
+  const movieList = useScrollLoadMovieList({ genreId })
 
   const handleClick = (movie) => () => {
     myList.add(movie)
+  }
+
+  const handleEndScroll = () => {
+    const { scrollLeft, scrollLeftMax } = containerRef.current?.getElement() || {}
+
+    if (scrollLeft > scrollLeftMax * 0.9) {
+      movieList.loadMore()
+    }
   }
 
   return (
@@ -18,12 +27,14 @@ export default function MoviesGenre({ genreName, genreId, myList }) {
         style={{ height: '220px', marginBottom: '2em' }}
         vertical={false}
         hideScrollbars={false}
+        onEndScroll={handleEndScroll}
+        ref={containerRef}
       >
         <div
           style={{ display: 'flex', flexDirection: 'row', columnGap: '1em' }}
           data-testid="movies-genre-container"
         >
-          {movieList?.data?.results?.map((movie) => (
+          {movieList?.data?.list?.map((movie) => (
             <React.Fragment key={movie?.id}>
               {myList.has(movie?.id) && (
                 <StarFilled

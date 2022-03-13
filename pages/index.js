@@ -2,10 +2,10 @@ import Head from 'next/head'
 import PageHeader from 'components/PageHeader'
 import Container from 'components/Container'
 import { useGenreList } from 'hooks/genre'
-import { useMovieList } from '../hooks/movie'
-import MoviesGenre from '../components/MoviesGenre'
-import MyMovieList from '../components/MyMovieList'
-import useMyList from '../hooks/mylist'
+import { useMovieList } from 'hooks/movie'
+import MoviesGenre from 'components/MoviesGenre'
+import MyMovieList from 'components/MyMovieList'
+import useMyList from 'hooks/mylist'
 
 export default function Home() {
   const genreList = useGenreList()
