@@ -59,6 +59,7 @@ function MyListImage({ movie, onDelete }) {
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      data-testid={`mylist-image-${movie?.id}`}
     >
       <img
         key={movie?.id}

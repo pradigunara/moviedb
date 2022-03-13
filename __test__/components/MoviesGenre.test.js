@@ -1,4 +1,3 @@
-// __tests__/fetch.test.js
 import React from 'react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
@@ -41,7 +40,7 @@ test('render fetched image correctly', async () => {
 
   const renderedImages = within(moviesContainer).getAllByRole('img')
 
-  expect(renderedImages).toHaveLength(20)
+  expect(renderedImages).toHaveLength(movieResponse.results.length)
 })
 
 test('click image will add to my list', async () => {
@@ -50,13 +49,14 @@ test('click image will add to my list', async () => {
     <MoviesGenre genreId={100} genreName="testGenre" myList={mockMyList} />
   )
 
-  const firstMovieTitle = movieResponse.results[0].title
+  const firstMovie = movieResponse.results[0]
 
   const moviesContainer = screen.getByTestId('movies-genre-container')
-  await waitFor(() => within(moviesContainer).getByAltText(firstMovieTitle))
+  await waitFor(() => within(moviesContainer).getByAltText(firstMovie.title))
 
-  const firstMovie = within(moviesContainer).getByAltText(firstMovieTitle)
-  fireEvent.click(firstMovie)
+  const firstMovieImage = within(moviesContainer).getByAltText(firstMovie.title)
+  fireEvent.click(firstMovieImage)
 
   expect(mockMyList.add).toHaveBeenCalledTimes(1)
+  expect(mockMyList.add).toHaveBeenCalledWith(firstMovie)
 })
