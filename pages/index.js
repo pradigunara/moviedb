@@ -1,19 +1,14 @@
 import Head from 'next/head'
-import PageHeader from 'components/PageHeader'
-import Container from 'components/Container'
+import { Col, Row } from 'antd'
 import { useGenreList } from 'hooks/genre'
-import { useMovieList } from 'hooks/movie'
+import { useMyList } from 'hooks/mylist'
+import PageHeader from 'components/PageHeader'
 import MoviesGenre from 'components/MoviesGenre'
 import MyMovieList from 'components/MyMovieList'
-import useMyList from 'hooks/mylist'
 
 export default function Home() {
   const genreList = useGenreList()
-  const movieList = useMovieList({ genreId: 18 })
   const myList = useMyList()
-
-  console.log('genreList', genreList.data)
-  console.log('movieList', movieList.data)
 
   return (
     <div>
@@ -37,5 +32,15 @@ export default function Home() {
         ))}
       </Container>
     </div>
+  )
+}
+
+function Container({ children }) {
+  return (
+    <Row style={{ marginLeft: '1em', marginRight: '1em', marginTop: '200px' }}>
+      <Col span={24}>
+        {children}
+      </Col>
+    </Row>
   )
 }

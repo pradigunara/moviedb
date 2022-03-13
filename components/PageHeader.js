@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import style from 'styles/Header.module.css'
 import { useMovieList } from 'hooks/movie'

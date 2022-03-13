@@ -1,6 +1,6 @@
 import { useLocalStorageState } from 'ahooks'
 
-export default function useMyList() {
+export function useMyList() {
   const [myList, setMyList] = useLocalStorageState('mylist', {
     defaultValue: new Map(),
     serializer: value => JSON.stringify(Array.from(value.entries())),
